@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Diagnoses</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap');
+
+        /* Body Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1521747116042-5a810fda9664') no-repeat center center fixed;
+            background-size: cover;
+            font-family: "Figtree", sans-serif;
+            color: #ffffff; /* Pure white text */
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* Darker transparent background */
+            backdrop-filter: blur(20px); /* Glass effect */
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Heading Styling */
+        h1 {
+            font-weight: 600;
+            color: #ffffff; /* Pure white text for high contrast */
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Table Styling */
+        .table {
+            color: #ffffff; /* Pure white text */
+        }
+
+        /* Remove Striped Row Colors */
+        .table tbody tr {
+            background-color: rgba(255, 255, 255, 0.1); /* Consistent background color for all rows */
+        }
+
+        /* Table Header */
+        .table thead th {
+            color: #ffffff; /* Pure white text */
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Back to Home Button */
+        .btn-primary {
+            background-color: #4caf50;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #388e3c;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Your Diagnosis History</h1>
+
+        {% if records %}
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Symptoms</th>
+                            <th scope="col">Diagnosis</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record[0] }}</td>
+                                <td>{{ record[1] }}</td>
+                                <td>{{ record[2] }}</td>
+                                <td>{{ record[3] }}</td>
+                                <td>{{ record[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center">No diagnosis records found.</p>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>CareMap Chatbot</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap');
+
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url('https://images.unsplash.com/photo-1521747116042-5a810fda9664') no-repeat center center fixed;
+        background-size: cover;
+        font-family: "Figtree", sans-serif;
+        color: #fff;
+    }
+
+    /* Heading Styling */
+    h1 {
+        position: absolute;
+        font-weight: 600;
+        font-size: 3rem;
+        color: #f0f0f0;
+        text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+        top: 15%;
+        z-index: 1;
+    }
+
+    /* Video Background */
+    video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        opacity: 0.7; /* Slight opacity for better readability */
+    }
+
+    /* Form Container */
+    .inp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        max-width: 400px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Form Input Styling */
+    input[type="text"],
+    input[type="number"],
+    .desp {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #f0f0f0;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    /* Input Hover and Focus Effects */
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    .desp:focus {
+        border-color: #4caf50;
+        outline: none;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Submit Button */
+    input[type="submit"],
+    .btn-back {
+        background-color: #4caf50;
+        color: #fff;
+        font-size: 1.1rem;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    input[type="submit"]:hover,
+    .btn-back:hover {
+        background-color: #388e3c;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.5rem;
+        }
+        .inp {
+            width: 90%;
+            padding: 15px;
+        }
+        input[type="submit"] {
+            font-size: 1rem;
+            padding: 10px;
+        }
+    }
+</style>
+<body>
+    <video src="{{ url_for('static', filename='dnabg.mp4') }}" autoplay loop muted></video>
+    <h1>CareMap</h1>
+    <div class="inp">
+        <form action="/chat" method="post">
+            <label for="name">
+                <input type="text" name="name" id="name" placeholder="Enter Your Name">
+            </label>
+            <label for="age">
+                <input type="number" name="age" id="age" placeholder="Enter Your Age">
+            </label>
+            <label for="symptoms">
+                <textarea class="desp" name="symptoms" id="disease" placeholder="Describe Your Symptoms" rows="4"></textarea>
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+        <button class="btn-back" onclick="window.history.back();">Go Back</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

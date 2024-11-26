@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Arimo", sans-serif;
+            background-color: black;
+            color: white;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Places video behind content */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures the video covers the entire viewport */
+            backdrop-filter: blur(20px);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            backdrop-filter: blur(35px); /* Frosted glass effect */
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Light border */
+            height: 55vh;
+            width: 30vw;
+            border-radius: 35px;
+            padding: 30px; /* Adjusted padding */
+            z-index: 1; /* Places container above the video */
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px; /* Adds space below the heading */
+            font-weight: 700; /* Makes the heading bold */
+        }
+
+        label {
+            color:rgb(245, 221, 221);
+            margin-top:4px; /* Adjust margin to bring label closer to input */
+            text-align: left; /* Aligns label text */
+             /* Full width */
+        }
+
+        input[type="password"],[type="text"],[type="submit"] {
+            padding: 15px;
+            height: 48px;
+            width: 100%; /* Full width */
+            border-radius: 20px;
+            outline: none;
+            font-size: large;
+            border: 2px solid white; /* Slightly transparent border */
+            margin-top: 5px;
+            margin-bottom: 15px; /* Reduced margin for tighter spacing */
+            background-color: transparent;
+        }
+        input[type="submit"]{
+            padding: 12px;
+            margin-top: 40px; /* Adds space above the submit button */
+            padding-left: 6px;
+            height: 50px;
+            color:white;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            background-color: rgb(31, 206, 185);
+            transition: background-color 1s ease-in-out;
+            cursor: pointer; /* Changes cursor on hover */
+            font-family: "Quicksand", sans-serif;
+  font-size:large;
+  font-weight:700;
+  font-style: normal; 
+        }
+        
+        input[type="submit"]:hover {
+            background-color:rgb(18, 88, 145); /* Changes color on hover */
+        }
+        .reg{
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            margin-top: -18px;
+            }
+            .reg label {
+            margin: 0; /* Reset margin */
+        }
+
+        .reg a {
+            color:skyblue; /* Changes link color */
+            text-decoration: none; /* Removes underline */
+        }
+
+        .reg a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <video src="{{ url_for('static', filename='trialbg.mp4') }}" autoplay loop muted></video>
+    <div class="container">
+        <h1>Log-in</h1>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" name="Rememeber" id=remember"">
+            <label for="radio">Remember Me</label>
+            <div class="reg">
+            <label for="Register">New Here?</label>
+            <a href="/register">Register</a>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
